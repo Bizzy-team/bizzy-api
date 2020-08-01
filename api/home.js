@@ -15,7 +15,7 @@ module.exports = function Home(req, res) {
   const objToReturn = {};
 
   routes.forEach(i => {
-    objToReturn[i.action] = `${apiUrl}/api${i.route}`
+    objToReturn[i.action] = `${apiUrl}/api${i.route}`;
   });
 
   return responserServer(res, 200, {
