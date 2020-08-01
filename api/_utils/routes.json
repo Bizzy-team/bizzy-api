@@ -1,0 +1,26 @@
+[
+    {
+        "action": "send-mail-for-reset-password",
+        "route": "/forgot"
+    },
+    {
+        "action": "connect-an-user",
+        "route": "/login"
+    },
+    {
+        "action": "logout-an-user",
+        "route": "/logout"
+    },
+    {
+        "action": "get-informations-about-an-user",
+        "route": "/me"
+    },
+    {
+        "action": "register-an-user",
+        "route": "/register"
+    },
+    {
+        "action": "reset-password-user",
+        "route": "/resetpassword"
+    }
+]
