@@ -5,3 +5,4 @@ README.md
 .eslintcache
 yarn.lock
 .scripts/
+.github
