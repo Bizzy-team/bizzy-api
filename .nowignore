@@ -6,3 +6,5 @@ README.md
 yarn.lock
 scripts/
 .github
+.huskyrc.json
+.prettierignore
