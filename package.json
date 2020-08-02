@@ -3,6 +3,7 @@
   "name": "bizzy-api",
   "version": "1.0.0",
   "scripts": {
+    "bdd": "node scripts/index.js",
     "lint": "npx eslint --cache './api/**/*'",
     "lint:watch": "esw -w --clear --color --cache './api/**/*'",
     "lint:fix": "npx eslint --fix './api/**/*'",
@@ -10,6 +11,8 @@
     "style:fix": "prettier --c --write './api/**/*'"
   },
   "devDependencies": {
+    "chalk": "^4.1.0",
+    "chance": "^1.1.6",
     "eslint": "^6.8.0",
     "eslint-config-airbnb-base": "^14.0.0",
     "eslint-config-prettier": "^6.9.0",
@@ -17,7 +20,10 @@
     "eslint-plugin-prettier": "^3.1.2",
     "eslint-watch": "^6.0.1",
     "husky": "^4.2.3",
-    "prettier": "^1.19.1"
+    "inquirer": "^7.3.3",
+    "ora": "^4.0.5",
+    "prettier": "^1.19.1",
+    "table": "^5.4.6"
   },
   "dependencies": {
     "@amaurymartiny/now-middleware": "^0.2.0",
