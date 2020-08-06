@@ -7,7 +7,7 @@ const responseServer = require("../_utils/responseServer");
  */
 module.exports = async function checkApiKey(req, res, next) {
   // eslint-disable-next-line no-console
-  console.log(req.socket.remoteAdress);
+  console.log(req.connection.remoteAdress, req.hostname, req.headers.host);
   if (!req.headers["x-api-key"]) {
     return responseServer(res, 401);
   }
