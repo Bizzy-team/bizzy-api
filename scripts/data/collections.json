@@ -15,5 +15,8 @@
     {
         "name": "access",
         "indexOn": "user"
+    },
+    {
+        "name": "cards"
     }
 ]
