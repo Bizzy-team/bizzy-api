@@ -6,6 +6,7 @@ const responseServer = require("../_utils/responseServer");
  * Middleware who check if client has access to the API.
  */
 module.exports = async function checkApiKey(req, res, next) {
+  console.log(req.socket.remoteAdress);
   if (!req.headers["x-api-key"]) {
     return responseServer(res, 401);
   }
