@@ -13,7 +13,7 @@ module.exports = (response, code, data = {}) => {
   const defaultHeader = {
     "Access-Control-Allow-Origin": `${
       response.remoteDomain === "dev-api-bizzy.vercel.app"
-        ? "http://localhost:3000"
+        ? "https://localhost:3000"
         : "https://bizzy.now.sh"
     }`,
     "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
