@@ -17,7 +17,7 @@ module.exports = (response, code, data = {}) => {
         : "https://bizzy.now.sh"
     }`,
     "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
-    "Access-Control-Expose-Headers":
+    "Access-Control-Allow-Headers":
       "Authorization ,ETag, Link, Location, Retry-After, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset, X-OAuth-Scopes, X-Accepted-OAuth-Scopes, X-Poll-Interval, x-api-key",
     "Cache-Control": "max-age=0, s-maxage=86400",
     "content-type": "application/json; charset=utf-8",
