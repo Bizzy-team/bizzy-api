@@ -16,7 +16,7 @@ module.exports = (response, code, data = {}) => {
         ? "https://localhost:3000"
         : "https://bizzy.now.sh"
     }`,
-    "Access-Control-Allow-Crendentials": true,
+    "Access-Control-Allow-Credentials": true,
     "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
     "Access-Control-Allow-Headers":
       "Authorization ,ETag, Link, Location, Retry-After, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset, X-OAuth-Scopes, X-Accepted-OAuth-Scopes, X-Poll-Interval, x-api-key",
