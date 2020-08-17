@@ -26,7 +26,7 @@ module.exports = (response, code, data = {}) => {
     Status: code,
     Vary: "Origin",
     "X-XSS-Protection": "1;mode=block",
-    "Referrer-Policy": "origin-when-cross-origin",
+    "Referrer-Policy": "origin-when-cross-origin, strict-origin-when-cross-origin",
     "X-Content-Type-Options": "nosniff",
     "X-Frame-Options": "deny",
     "X-RateLimit-Limit": 60
