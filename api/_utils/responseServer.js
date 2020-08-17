@@ -12,7 +12,7 @@ module.exports = (response, code, data = {}) => {
   let error;
   const defaultHeader = {
     "Access-Control-Allow-Origin": `${
-      response.remoteDomain === "dev-api-bizzy.vercel.app"
+      response.remoteDomain === "dev.bizzy.studio"
         ? "http://localhost:3000"
         : "https://bizzy.now.sh"
     }`,
