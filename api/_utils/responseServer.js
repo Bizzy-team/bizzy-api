@@ -12,11 +12,14 @@ module.exports = (response, code, data = {}) => {
   let error;
   const defaultHeader = {
     "Access-Control-Allow-Origin": `${
-      data.query ? "http://localhost:3000" : "https://bizzy.now.sh"
+      response.remoteDomain === "dev.bizzy.studio"
+        ? "http://localhost:3000"
+        : "https://bizzy-three.vercel.app"
     }`,
+    "Access-Control-Allow-Credentials": true,
     "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
-    "Access-Control-Expose-Headers":
-      "Authorization ,ETag, Link, Location, Retry-After, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset, X-OAuth-Scopes, X-Accepted-OAuth-Scopes, X-Poll-Interval",
+    "Access-Control-Allow-Headers":
+      "Authorization ,ETag, Link, Location, Retry-After, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset, X-OAuth-Scopes, X-Accepted-OAuth-Scopes, X-Poll-Interval, x-api-key, Content-Type",
     "Cache-Control": "max-age=0, s-maxage=86400",
     "content-type": "application/json; charset=utf-8",
     "Content-Security-Policy": "default-src 'none'",
