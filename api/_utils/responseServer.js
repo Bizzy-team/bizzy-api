@@ -14,7 +14,7 @@ module.exports = (response, code, data = {}) => {
     "Access-Control-Allow-Origin": `${
       response.remoteDomain === "dev.bizzy.studio"
         ? "http://localhost:3000"
-        : "https://bizzy.now.sh"
+        : "https://bizzy-three.vercel.app"
     }`,
     "Access-Control-Allow-Credentials": true,
     "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
