@@ -9,11 +9,11 @@
   </p>
   <p>
 
-[![Build Status](https://travis-ci.com/luctst/bizzy-api.svg?branch=master)](https://travis-ci.com/luctst/bizzy-api)
-[![Dependencies](https://img.shields.io/david/luctst/bizzy-api.svg?style=popout-square)](https://david-dm.org/luctst/bizzy-api)
-[![devDependencies Status](https://david-dm.org/luctst/bizzy-api/dev-status.svg?style=flat-square)](https://david-dm.org/luctst/bizzy-api?type=dev)
+[![Build Status](https://travis-ci.com/Bizzy-team/bizzy-api.svg?branch=master)](https://travis-ci.com/Bizzy-team/bizzy-api)
+[![Dependencies](https://img.shields.io/david/Bizzy-team/bizzy-api.svg?style=popout-square)](https://david-dm.org/Bizzy-team/bizzy-api)
+[![devDependencies Status](https://david-dm.org/Bizzy-team/bizzy-api/dev-status.svg?style=flat-square)](https://david-dm.org/Bizzy-team/bizzy-api?type=dev)
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
-[![Twitter](https://img.shields.io/twitter/follow/luctstt.svg?label=Follow&style=social)](https://twitter.com/luctstt)
+[![Twitter](https://img.shields.io/twitter/follow/Bizzy-team.svg?label=Follow&style=social)](https://twitter.com/luctst)
 
   </p>
 </div>
