@@ -1,6 +1,6 @@
 const { decode, verify } = require("jsonwebtoken");
-const mongo = require("../_db/index");
-const responseServer = require("../_utils/responseServer");
+const mongo = require("../db/index");
+const responseServer = require("../utils/responseServer");
 
 /**
  * Middleware who check if client has access to the API.
