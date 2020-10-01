@@ -3,16 +3,13 @@
   "name": "bizzy-api",
   "version": "1.0.0",
   "scripts": {
-    "bdd": "node scripts/index.js",
-    "lint": "npx eslint --cache './api/**/*'",
-    "lint:watch": "esw -w --clear --color --cache './api/**/*'",
-    "lint:fix": "npx eslint --fix './api/**/*'",
-    "style": "prettier -c './api/**/*'",
-    "style:fix": "prettier --c --write './api/**/*'"
+    "lint": "npx eslint --cache './lambdas/**/*'",
+    "lint:watch": "esw -w --clear --color --cache './lambdas/**/*'",
+    "lint:fix": "npx eslint --fix './lambdas/**/*'",
+    "style": "prettier -c './lambdas/**/*'",
+    "style:fix": "prettier --c --write './lambdas/**/*'"
   },
   "devDependencies": {
-    "chalk": "^4.1.0",
-    "chance": "^1.1.7",
     "eslint": "^6.8.0",
     "eslint-config-airbnb-base": "^14.0.0",
     "eslint-config-prettier": "^6.9.0",
@@ -20,13 +17,9 @@
     "eslint-plugin-prettier": "^3.1.2",
     "eslint-watch": "^6.0.1",
     "husky": "^4.3.0",
-    "inquirer": "^7.3.3",
-    "ora": "^4.1.1",
-    "prettier": "^1.19.1",
-    "table": "^5.4.6"
+    "prettier": "^1.19.1"
   },
   "dependencies": {
-    "@amaurymartiny/now-middleware": "^0.2.1",
     "bcrypt": "^4.0.1",
     "cookie": "^0.4.1",
     "dotenv": "^8.2.0",
