@@ -9,10 +9,6 @@ os:
 
 cache: npm
 
-branches:
-  only:
-  - master
-
 before_install:
   - npm i -g npm@latest
 
@@ -22,6 +18,11 @@ install:
 script:
 - npm run lint
 - npm run style
+
+deploy:
+  provider: lambda
+  function_name: ''
+  region: 'eu-west-1'
 
 notifications:
   email:
