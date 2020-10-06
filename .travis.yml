@@ -11,7 +11,9 @@ branches:
 jobs:
   include:
     - stage: Lint
-      os: osx
+    - os: osx
+    - os: linux
+    - os: windows
       cache:
         directories:
           - "node_modules"
@@ -26,10 +28,10 @@ jobs:
         - npm run lint
         - npm run style
     - stage: Deploy
-      os:
-        - linux
-        - osx
-        - windows
+    - os: osx
+    - os: linux
+    - os: windows
+      if: type = pull_request AND branch = dev
       cache:
         directories:
           - node_modules
@@ -46,7 +48,6 @@ jobs:
         - cd lambdas/${TRAVIS_PULL_REQUEST_BRANCH}
         - serverless deploy -s ${TRAVIS_BRANCH}
         - cd -
-      if: type = pull_request AND branch = dev
 
 notifications:
   email:
