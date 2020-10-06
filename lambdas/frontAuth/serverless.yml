@@ -15,3 +15,5 @@ functions:
         method: get
         cors: true
         private: true
+    package:
+      individually: true
