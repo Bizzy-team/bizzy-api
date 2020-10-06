@@ -43,8 +43,10 @@ deploy_lambda: &DEPLOY_LAMBDA
 jobs:
   include:
     - <<: &TEST_LINT
+      - stage: Lint
       name: "Run script lint, prettier.."
     - <<: &DEPLOY_LAMBDA
+      - stage: Deploy
       name: "Deploy specific lambde in dev stage"
       if: type = pull_request AND branch = dev
 
