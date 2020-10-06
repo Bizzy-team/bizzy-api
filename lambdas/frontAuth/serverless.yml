@@ -1,4 +1,4 @@
-service: lambda/frontAuth
+service: frontAuth
 
 provider:
   name: aws
