@@ -11,10 +11,7 @@ branches:
 jobs:
   include:
     - stage: Lint
-      os:
-        - linux
-        - osx
-        - windows
+      os: osx
       cache:
         directories:
           - "node_modules"
