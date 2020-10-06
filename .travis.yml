@@ -3,11 +3,6 @@ language: node_js
 node_js:
 - "lts/*"
 
-os:
-- linux
-- osx
-- windows
-
 branches:
   only:
     - master
@@ -16,6 +11,10 @@ branches:
 jobs:
   include:
     - stage: Lint
+      os:
+        - linux
+        - osx
+        - windows
       cache:
         directories:
           - "node_modules"
@@ -30,6 +29,10 @@ jobs:
         - npm run lint
         - npm run style
     - stage: Deploy
+      os:
+        - linux
+        - osx
+        - windows
       cache:
         directories:
           - node_modules
