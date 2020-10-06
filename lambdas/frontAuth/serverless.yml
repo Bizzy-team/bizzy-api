@@ -6,7 +6,7 @@ provider:
   region: us-east-1
 
 functions:
-  frontAuthTest:
+  frontAuth:
     handler: index.handler
     description: Secure front-end in dev mode with authentication
     events:
