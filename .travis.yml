@@ -26,28 +26,19 @@ deploy_lambda: &DEPLOY_LAMBDA
   cache:
     directories:
       - node_modules
-      - ${PATH}/node_modules
+      - lambdas/${TRAVIS_PULL_REQUEST_BRANCH}/node_modules
   
   install:
     - npm install -g serverless
     - travis_retry npm install
-    - cd ${PATH}
+    - cd lambdas/${TRAVIS_PULL_REQUEST_BRANCH}
     - travis_retry npm install
     - cd -
   
   script:
-    - cd ${path}
-    - serverless deploy -d ${TRAVIS_BRANCH}
+    - cd lambdas/${TRAVIS_PULL_REQUEST_BRANCH}
+    - serverless deploy -s ${TRAVIS_BRANCH}
     - cd -
-
-environments:
-  - &PRODUCTION_ENV
-    - AWS_ACCESS_KEY_ID="${AWS_ACCESS_KEY_ID_PRODUCTION}"
-    - AWS_SECRET_ACCESS_KEY="${AWS_SECRET_ACCESS_KEY_PRODUCTION}"
-
-  - &DEVELOPMENT_ENV
-    - AWS_ACCESS_KEY_ID="${AWS_ACCESS_KEY_ID_DEVELOPMENT}"
-    - AWS_SECRET_ACCESS_KEY="${AWS_SECRET_ACCESS_KEY_DEVELOPMENT}"
 
 jobs:
   include:
@@ -55,10 +46,7 @@ jobs:
       name: "Run script lint, prettier.."
     - <<: &DEPLOY_LAMBDA
       name: "Deploy specific lambde in dev stage"
-      if: 
-      env:
-        - PATH=""
-        - *DEVELOPMENT_ENV
+      if: type = pull_request AND branch = dev
 
 notifications:
   email:
