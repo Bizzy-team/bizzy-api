@@ -1,0 +1,17 @@
+service: lambda/frontAuth
+
+provider:
+  name: aws
+  runtime: nodejs10.x
+  region: us-east-1
+
+functions:
+  frontAuth:
+    handler: index.handler
+    description: Secure front-end in dev mode with authentication
+    events:
+      - http:
+        path: /
+        method: get
+        cors: true
+        private: true
