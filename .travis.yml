@@ -8,46 +8,44 @@ os:
 - osx
 - windows
 
-deploy_service_job: &TEST_LINT
-  cache:
-    - node_modules
-  
-  before_install:
-    - npm i -g npm@latest
-  
-  install:
-    - npm install
-  
-  script:
-    - npm run lint
-    - npm run style
-
-deploy_lambda: &DEPLOY_LAMBDA
-  cache:
-    directories:
-      - node_modules
-      - lambdas/${TRAVIS_PULL_REQUEST_BRANCH}/node_modules
-  
-  install:
-    - npm install -g serverless
-    - travis_retry npm install
-    - cd lambdas/${TRAVIS_PULL_REQUEST_BRANCH}
-    - travis_retry npm install
-    - cd -
-  
-  script:
-    - cd lambdas/${TRAVIS_PULL_REQUEST_BRANCH}
-    - serverless deploy -s ${TRAVIS_BRANCH}
-    - cd -
-
+branches:
+  only:
+    - master
+    - dev
+    
 jobs:
   include:
-    - <<: &TEST_LINT
-      - stage: Lint
-      name: "Run script lint, prettier.."
-    - <<: &DEPLOY_LAMBDA
-      - stage: Deploy
-      name: "Deploy specific lambde in dev stage"
+    - stage: Lint
+      cache:
+        directories:
+          - "node_modules"
+      
+      before_install:
+        - npm i -g npm@latest
+      
+      install:
+        - npm install
+      
+      script:
+        - npm run lint
+        - npm run style
+    - stage: Deploy
+      cache:
+        directories:
+          - node_modules
+          - lambdas/${TRAVIS_PULL_REQUEST_BRANCH}/node_modules
+      
+      install:
+        - npm install -g serverless
+        - travis_retry npm install
+        - cd lambdas/${TRAVIS_PULL_REQUEST_BRANCH}
+        - travis_retry npm install
+        - cd -
+      
+      script:
+        - cd lambdas/${TRAVIS_PULL_REQUEST_BRANCH}
+        - serverless deploy -s ${TRAVIS_BRANCH}
+        - cd -
       if: type = pull_request AND branch = dev
 
 notifications:
