@@ -1,9 +1,6 @@
-const { chain } = require("@amaurymartiny/now-middleware");
+const forgotDb = require("./dbController");
 
-const checkApiKey = require("./_middleware/checkApiKey");
-const responseServer = require("./_utils/responseServer");
-const parseBody = require("./_utils/parseBody");
-const forgotDb = require("./_db/controllers/forgot");
+exports.handler = async function () {};
 
 function Forgot(req, res) {
   if (req.method !== "POST") {
@@ -35,5 +32,3 @@ function Forgot(req, res) {
     });
   });
 }
-
-module.exports = chain(checkApiKey)(Forgot);
