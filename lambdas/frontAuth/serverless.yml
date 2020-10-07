@@ -15,6 +15,6 @@ functions:
         eventType: viewer-request
         includeBody: false
         origin:
-          DomainName: dev-bizzy.com.s3.amazonaws.com
+          DomainName: https://d2pfsxa74xtast.cloudfront.net
     package:
       individually: true
