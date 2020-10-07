@@ -19,4 +19,4 @@ functions:
     package:
       individually: true
       include:
-        - ./.env
+        - .env
