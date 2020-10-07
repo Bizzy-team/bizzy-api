@@ -7,13 +7,14 @@ provider:
 
 functions:
   frontAuth:
+    name: frontauth-${opt:stage}-frontAuth
     handler: index.handler
     description: Secure front-end in dev mode with authentication
     events:
-      - http:
-        path: /
-        method: get
-        cors: true
-        private: true
+      - cloudFront:
+        eventType: viewer-request
+        includeBody: false
+        origin:
+          DomainName: dev-bizzy.com.s3.amazonaws.com
     package:
       individually: true
