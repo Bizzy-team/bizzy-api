@@ -18,3 +18,5 @@ functions:
           DomainName: https://d2pfsxa74xtast.cloudfront.net
     package:
       individually: true
+      include:
+        - ./.env
