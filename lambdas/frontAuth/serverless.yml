@@ -4,6 +4,12 @@ provider:
   name: aws
   runtime: nodejs10.x
   region: us-east-1
+  profile: deploy-lambda-dev
+
+package:
+  individually: true
+  include:
+    - ./.env
 
 functions:
   frontAuth:
@@ -12,11 +18,6 @@ functions:
     description: Secure front-end in dev mode with authentication
     events:
       - cloudFront:
-        eventType: viewer-request
-        includeBody: false
-        origin:
-          DomainName: https://d2pfsxa74xtast.cloudfront.net
-    package:
-      individually: true
-      include:
-        - .env
+          eventType: viewer-request
+          includeBody: false
+          origin: http://dev-bizzy.com.s3-website-us-east-1.amazonaws.com/
