@@ -4,7 +4,6 @@ provider:
   name: aws
   runtime: nodejs10.x
   region: us-east-1
-  profile: deploy-lambda-dev
 
 package:
   individually: true
@@ -16,8 +15,5 @@ functions:
     name: frontauth-${opt:stage}-frontAuth
     handler: index.handler
     description: Secure front-end in dev mode with authentication
-    events:
-      - cloudFront:
-          eventType: viewer-request
-          includeBody: false
-          origin: http://dev-bizzy.com.s3-website-us-east-1.amazonaws.com/
+    memorySize: 128
+    timeout: 5
