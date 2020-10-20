@@ -1,0 +1,6 @@
+{
+  "private": true,
+  "name": "response",
+  "version": "1.0.0",
+  "main": "router.js"
+}

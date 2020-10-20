@@ -1,0 +1,13 @@
+service: LyrResponse
+
+provider:
+  name: aws
+  runtime: nodejs10.x
+  region: eu-west-1
+
+layers:
+  LyrResponse:
+    path: ./
+    description: Handle method, and response to send to the client.
+    compatiblesRuntimes:
+      - node10.x
