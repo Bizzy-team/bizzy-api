@@ -1,0 +1,32 @@
+service: Home
+
+provider:
+  name: aws
+  runtime: nodejs10.x
+  region: ${env:AWS_REGION}
+  versionFunctions: false
+
+plugins:
+  - serverless-offline
+  - serverless-dotenv-plugin
+
+custom:
+  serverless-offline:
+    useDocker: true
+  dotenv:
+    include:
+      - NODE_ENV
+    requires:
+      file: true
+
+functions:
+  Home:
+    name: home-${opt:stage}
+    handler: router.handler
+    description: Return all routes availables for this API.
+    timeout: 3
+    memorySize: 128
+    layers:
+      - arn:aws:lambda:eu-west-1:431852575624:layer:LyrResponse:1
+    events:
+      - http: GET /

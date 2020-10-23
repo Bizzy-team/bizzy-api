@@ -1,0 +1,10 @@
+{
+  "private": true,
+  "name": "home",
+  "version": "1.0.0",
+  "main": "index.js",
+  "devDependencies": {
+    "serverless-dotenv-plugin": "^3.1.0",
+    "serverless-offline": "^6.8.0"
+  }
+}
