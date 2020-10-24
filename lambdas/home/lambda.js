@@ -1,10 +1,11 @@
-const {readdir} = require("fs");
+const { readdir } = require("fs");
+
 const routes = {
-  '/forgot': 'send mail for resset password.',
-  '/login': 'connect an user.',
-  '/logout': 'Logout an user.',
-  '/register': 'Create an user in bdd.',
-  '/resetpassword': 'Reset password user.'
+  "/forgot": "send mail for resset password.",
+  "/login": "connect an user.",
+  "/logout": "Logout an user.",
+  "/register": "Create an user in bdd.",
+  "/resetpassword": "Reset password user."
 };
 
 /**
@@ -14,16 +15,19 @@ exports.handler = function Home(event, context, cb) {
   console.log("TESTT");
   context.callbackWaitsForEmptyEventLoop = false;
 
-  readdir(event.stage === 'dev' ? '/' : '/opt', {withFileTypes: true}, function (err, files) {
+  readdir(event.stage === "dev" ? "/" : "/opt", { withFileTypes: true }, function(
+    err,
+    files
+  ) {
     if (err) return cb(err);
 
     cb(null, {
       statusCode: 200,
       headers: {
-        'x-custom-header': 'My Header Value',
+        "x-custom-header": "My Header Value"
       },
-      body: JSON.stringify({ message: 'Hello World!' }),
-    })
+      body: JSON.stringify({ message: "Hello World!" })
+    });
   });
   // if (req.method !== "GET") {
   //   return responserServer(res, 405, {

@@ -1,6 +1,6 @@
 const forgotDb = require("./dbController");
 
-exports.handler = async function () {};
+exports.handler = async function() {};
 
 function Forgot(req, res) {
   if (req.method !== "POST") {
