@@ -9,6 +9,8 @@ provider:
 package:
   excludeDevDependencies: true
   individually: true
+  exclude:
+    - ./
 
 functions:
   home:
