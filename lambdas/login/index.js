@@ -4,6 +4,8 @@ const responseServer = require("./_utils/responseServer");
 const loginDB = require("./_db/controllers/login");
 const parseBody = require("./_utils/parseBody");
 
+exports.handler = () => {};
+
 function Login(req, res) {
   if (req.method !== "POST") {
     return responseServer(res, 405, {

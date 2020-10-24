@@ -11,6 +11,7 @@ const routes = {
  * Return all routes availables for the Bizzy API.
  */
 exports.handler = function Home(event, context, cb) {
+  console.log("TESTT");
   context.callbackWaitsForEmptyEventLoop = false;
 
   readdir(event.stage === 'dev' ? '/' : '/opt', {withFileTypes: true}, function (err, files) {

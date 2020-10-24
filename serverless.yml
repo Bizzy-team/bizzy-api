@@ -1,0 +1,31 @@
+service: bizzy
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  stage: ${opt:stage, 'dev'}
+  region: ${opt:region, 'eu-west-1'}
+
+package:
+  excludeDevDependencies: true
+  individually: true
+
+functions:
+  home:
+    handler: lambdas/home/lambda.handler
+    cors: true
+    timeout: 3
+    memorySize: 128
+    package:
+      include:
+        - lambdas/home/**
+    events:
+      - http: GET /home
+  login:
+    handler: lambdas/login/index.handler
+    cors: true
+    package:
+      include:
+        - lambdas/login/index.handler
+    events:
+      - http: POST /login
