@@ -7,7 +7,9 @@
     "lint:watch": "esw -w --clear --color --cache './lambdas/**/*'",
     "lint:fix": "npx eslint --fix './lambdas/**/*'",
     "style": "prettier -c './lambdas/**/*'",
-    "style:fix": "prettier --c --write './lambdas/**/*'"
+    "style:fix": "prettier --c --write './lambdas/**/*'",
+    "deploy:fn": "cd $PATH && serverless deploy",
+    "update:fn": "cd $PATH && serverless deploy function -f=$FNAME && cd -"
   },
   "devDependencies": {
     "eslint": "^6.8.0",
@@ -17,6 +19,11 @@
     "eslint-plugin-prettier": "^3.1.2",
     "eslint-watch": "^6.0.1",
     "husky": "^4.3.0",
-    "prettier": "^1.19.1"
+    "prettier": "^1.19.1",
+    "serverless-dotenv-plugin": "^3.1.0",
+    "serverless-offline": "^6.8.0"
+  },
+  "dependencies": {
+    "dotenv": "^8.2.0"
   }
 }
