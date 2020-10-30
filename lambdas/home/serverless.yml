@@ -1,15 +1,29 @@
 service: Home
 
-provider: 
-  - ${file(../../serverless.common.yml):provider}
+provider:
+  name: aws
+  runtime: nodejs10.x
+  region: ${opt:region, 'eu-west-1'}
+  versionFunctions: false
 
-package: ${file(../../serverless.common.yml):package}
+package:
+  individually: true
+  include:
+    - ./**
 
-plugins: ${file(../../serverless.common.yml):plugins}
+plugins:
+  - serverless-offline
+  - serverless-dotenv-plugin
 
-custom: ${file(../../serverless.common.yml):custom}
+custom:
+  serverless-offline: ${file(../../serverless.common.yml):serverless-offline}
+  stage: ${opt:stage, 'dev'}
+  defineApiId:
+    dev: 'xsj24ddyul'
+    prod: ''
 
-apiGateway: ${file(../../serverless.common.yml):apiGateway}
+apiGateway: # Optional API Gateway global config in provider
+  restApiId: ${self:custom.defineApiId.${self:custom.stage}}
 
 functions:
   Home:
@@ -20,8 +34,5 @@ functions:
     memorySize: 128
     layers:
       - arn:aws:lambda:eu-west-1:431852575624:layer:LyrResponse:1
-    events:
-      - http:
-        path: /test
-        method: GET
-        cors: true
+    events: 
+      -  http: GET /

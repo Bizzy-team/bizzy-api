@@ -10,4 +10,4 @@ layers:
     path: ./
     description: Handle method, and response to send to the client.
     compatiblesRuntimes:
-      - node10.x
+      - nodejs10.x

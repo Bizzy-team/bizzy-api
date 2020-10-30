@@ -1,4 +1,5 @@
 const { readdir } = require("fs");
+const response = require("../../layers/response/handler");
 
 const routes = {
   "/forgot": "send mail for resset password.",
@@ -12,7 +13,8 @@ const routes = {
  * Return all routes availables for the Bizzy API.
  */
 exports.handler = function Home(event, context, cb) {
-  console.log("TESTT");
+  response();
+  console.log("TESTT", "LOLLLL");
   context.callbackWaitsForEmptyEventLoop = false;
 
   readdir(event.stage === "dev" ? "/" : "/opt", { withFileTypes: true }, function(
@@ -26,7 +28,7 @@ exports.handler = function Home(event, context, cb) {
       headers: {
         "x-custom-header": "My Header Value"
       },
-      body: JSON.stringify({ message: "Hello World!" })
+      body: JSON.stringify({ message: "Hello World!" , data: true})
     });
   });
   // if (req.method !== "GET") {

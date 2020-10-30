@@ -1,4 +1,4 @@
-service: bizzy
+service: LyrDependencies
 
 provider:
   name: aws
@@ -9,25 +9,29 @@ provider:
 package:
   excludeDevDependencies: true
   individually: true
-  exclude:
-    - ./
 
-functions:
-  home:
-    handler: lambdas/home/lambda.handler
-    cors: true
-    timeout: 3
-    memorySize: 128
-    package:
-      include:
-        - lambdas/home/**
-    events:
-      - http: GET /home
-  login:
-    handler: lambdas/login/index.handler
-    cors: true
-    package:
-      include:
-        - lambdas/login/index.handler
-    events:
-      - http: POST /login
+layers:
+  node_modules:
+    path: ./node_modules/
+    description: All dependencies share by the diferents services
+    compatibleRuntimes:
+      - nodejs10.x
+# functions:
+#   home:
+#     handler: lambdas/home/lambda.handler
+#     cors: true
+#     timeout: 3
+#     memorySize: 128
+#     package:
+#       include:
+#         - lambdas/home/**
+#     events:
+#       - http: GET /home
+#   login:
+#     handler: lambdas/login/index.handler
+#     cors: true
+#     package:
+#       include:
+#         - lambdas/login/index.handler
+#     events:
+#       - http: POST /login
