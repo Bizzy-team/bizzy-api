@@ -1,37 +1,85 @@
-service: LyrDependencies
+service: Bizzy
+
+plugins:
+  - serverless-offline
+  - serverless-dotenv-plugin
+
+custom:
+  serverless-offline: 
+    useDocker: true
+    corsAllowHeaders: 'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'
+    corsExposedHeaders: 'WWW-Authenticate,Server-Authorization,Access-Control-Allow-Origin,Content-Type'
+    corsDisallowCredentials: false
+    printOutput: true
+    apiKey: ${env:API_KEY_DEV}
+  apiKey:
+    dev: ${env:API_KEY_DEV}
+    prod: ${env:API_KEY_PROD}
 
 provider:
   name: aws
   runtime: nodejs12.x
-  stage: ${opt:stage, 'dev'}
+  apiName: bizzy-api
   region: ${opt:region, 'eu-west-1'}
+  versionFunctions: false
+  endpointType: REGIONAL
+  apiGateway:
+    apiKeySourceType: HEADER
+  apiKeys:
+    - name: API_KEY
+      value: ${self:custom.apiKey.${opt:stage, 'dev'}}
 
 package:
+  exclude:
+    - ./node_modules/**
+    - .github/**
+    - scripts/**
+    - utils/**
+    - estlintrc.json
+    - .gitignore
+    - .huskyrc.json
+    - .prettierignore
+    - .prettierrc.json
+    - .travis.yml
+    - package-lock.json
+    - package.json
+    - README.md
+    - SECURITY.md
   excludeDevDependencies: true
-  individually: true
 
-layers:
-  node_modules:
-    path: ./node_modules/
-    description: All dependencies share by the diferents services
-    compatibleRuntimes:
-      - nodejs10.x
-# functions:
-#   home:
-#     handler: lambdas/home/lambda.handler
-#     cors: true
-#     timeout: 3
-#     memorySize: 128
-#     package:
-#       include:
-#         - lambdas/home/**
-#     events:
-#       - http: GET /home
-#   login:
-#     handler: lambdas/login/index.handler
-#     cors: true
-#     package:
-#       include:
-#         - lambdas/login/index.handler
-#     events:
-#       - http: POST /login
+functions:
+  home:
+    private: true
+    handler: lambdas/home.handler
+    timeout: 3
+    memorySize: 128
+    package:
+      include:
+        - lambdas/home.js
+        - db/controller/home.js
+        - ./.env
+    layers:
+      - arn:aws:lambda:eu-west-1:431852575624:layer:bizzyLayers:2
+    events:
+      - http:
+          path: /
+          method: get
+          cors:
+            headers: '*'
+          private: true
+  login:
+    private: true
+    handler: lambdas/login/index.handler
+    package:
+      include:
+        - ./lambdas/login/index.handler
+        - ./env
+    layers:
+      - arn:aws:lambda:eu-west-1:431852575624:layer:bizzyLayers:2
+    events:
+      - http:
+          path: /login
+          method: post
+          cors:
+            headers: '*'
+          private: true
