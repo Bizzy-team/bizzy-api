@@ -14,7 +14,10 @@ const routes = {
 exports.handler = function Home(event, context, cb) {
   context.callbackWaitsForEmptyEventLoop = false;
 
-  return cb(null, response(200, {
-    modifyResponse: { ...routes }
-  }));
+  return cb(
+    null,
+    response(200, {
+      modifyResponse: { ...routes }
+    })
+  );
 };
