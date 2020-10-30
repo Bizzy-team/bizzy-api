@@ -28,7 +28,7 @@ exports.handler = function Home(event, context, cb) {
       headers: {
         "x-custom-header": "My Header Value"
       },
-      body: JSON.stringify({ message: "Hello World!" , data: true})
+      body: JSON.stringify({ message: "Hello World!", data: true })
     });
   });
   // if (req.method !== "GET") {
