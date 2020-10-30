@@ -1,6 +1,0 @@
-serverless-offline:
-  useDocker: true
-  corsAllowHeaders: 'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'
-  corsDisallowCredentials: false
-
-dotenv:
