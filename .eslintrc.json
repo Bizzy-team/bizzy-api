@@ -13,7 +13,8 @@
     "ignorePatterns": [
         "*.png",
         "*.json",
-        "*.html"
+        "*.html",
+        "*.yml"
     ],
     "rules": {
         "prettier/prettier": 1,
@@ -55,6 +56,9 @@
             3
         ],
         "no-underscore-dangle": 0,
-        "no-console": 2
+        "no-console": 2,
+        "import/no-unresolved": 0,
+        "import/no-absolute-path": 0,
+        "import/no-extraneous-dependencies": 0
     }
 }

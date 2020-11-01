@@ -10,20 +10,20 @@ branches:
     
 jobs:
   include:
-    # - stage: Lint
-    #   cache:
-    #     directories:
-    #       - "node_modules"
+    - stage: Lint
+      cache:
+        directories:
+          - "node_modules"
       
-    #   before_install:
-    #     - npm i -g npm@latest
+      before_install:
+        - npm i -g npm@latest
       
-    #   install:
-    #     - npm install
+      install:
+        - npm install
       
-    #   script:
-    #     - npm run lint
-    #     - npm run style
+      script:
+        - npm run lint
+        - npm run style
     - stage: Deploy
       if: type = pull_request AND branch = dev
       cache:
