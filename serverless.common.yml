@@ -1,15 +1,17 @@
-custom:
-  serverless-offline:
-    useDocker: true
-    corsAllowHeaders: 'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'
-    corsExposedHeaders: 'WWW-Authenticate,Server-Authorization,Access-Control-Allow-Origin,Content-Type'
-    corsDisallowCredentials: false
-    printOutput: true
-    apiKey: ${env:API_KEY_DEV}
-  dotenv:
-  apiKey:
-    dev: ${env:API_KEY_DEV}
-    prod: ${env:API_KEY_PROD}
+serverless-offline:
+  useDocker: true
+  corsAllowHeaders: 'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'
+  corsExposedHeaders: 'WWW-Authenticate,Server-Authorization,Access-Control-Allow-Origin,Content-Type'
+  corsDisallowCredentials: false
+  printOutput: true
+  apiKey: ${env:API_KEY_DEV}
+
+dotenv:
+  path: ../../.env
+
+apiKey:
+  dev: ${env:API_KEY_DEV}
+  prod: ${env:API_KEY_PROD}
 
 provider:
   name: aws
