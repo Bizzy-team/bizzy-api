@@ -1,4 +1,4 @@
-service: homeLambda
+service: loginLambda
 
 plugins:
   - serverless-offline
@@ -22,7 +22,7 @@ provider:
   name: aws
   runtime: nodejs12.x
   apiName: bizzy-api
-  stackName: homeLambda
+  stackName: loginLambda
   region: ${opt:region, 'eu-west-1'}
   versionFunctions: false
   endpointType: REGIONAL
@@ -30,9 +30,6 @@ provider:
     restApiId: ${env:REST_API_ID}
     restApiRootResourceId: ${env:REST_API_RESSOURCE_ID}
     apiKeySourceType: HEADER
-  apiKeys:
-    - name: API_KEY
-      value: ${self:custom.apiKey.${opt:stage, 'dev'}}
 
 package:
   include:
@@ -43,17 +40,17 @@ package:
     - package-lock.json
 
 functions:
-  home:
+  login:
     handler: lambda.handler
     timeout: 3
-    name: ${opt:stage, self:provider.stage, 'dev'}-home
+    name: ${opt:stage, self:provider.stage, 'dev'}-login
     memorySize: 128
     layers:
       - arn:aws:lambda:eu-west-1:431852575624:layer:dependencies:2
     events:
       - http:
-          path: /
-          method: get
+          path: /login
+          method: post
           cors:
             headers: '*'
           private: true

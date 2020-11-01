@@ -6,7 +6,8 @@ provider:
   stage: ${opt:stage, 'dev'}
 
 package:
-  exclude: package-lock.json
+  exclude: 
+    - package-lock.json
   excludeDevDependencies: true
 
 layers:

@@ -1,19 +1,29 @@
-service: frontauth
+service: frontAuth
 
 provider:
   name: aws
-  runtime: nodejs10.x
-  region: us-east-1
+  runtime: nodejs12.x
+  stackName: frontAuth
+  region: ${opt:region, 'us-east-1'}
 
 package:
   individually: true
   include:
-    - ./.env
+    - .env
+  exclude:
+    - package-lock.json
 
 functions:
   frontAuth:
-    name: frontauth-${opt:stage}-frontAuth
-    handler: index.handler
+    name: ${opt:stage, self:provider.stage, 'dev'}-frontAuth
+    handler: lambda.handler
     description: Secure front-end in dev mode with authentication
     memorySize: 128
     timeout: 5
+    events:
+      - cloudFront:
+        eventType: viewer-request
+        origin:
+          DomainName: http://dev-bizzy.com-accesslogs.s3-website-us-east-1.amazonaws.com/
+          CustomOriginConfig:
+            OriginProtocolPolicy: match-viewer
