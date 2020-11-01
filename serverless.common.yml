@@ -1,6 +1,27 @@
-serverless-offline:
-  useDocker: true
-  corsAllowHeaders: 'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'
-  corsDisallowCredentials: false
+custom:
+  serverless-offline:
+    useDocker: true
+    corsAllowHeaders: 'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'
+    corsExposedHeaders: 'WWW-Authenticate,Server-Authorization,Access-Control-Allow-Origin,Content-Type'
+    corsDisallowCredentials: false
+    printOutput: true
+    apiKey: ${env:API_KEY_DEV}
+  dotenv:
+  apiKey:
+    dev: ${env:API_KEY_DEV}
+    prod: ${env:API_KEY_PROD}
 
-dotenv:
+provider:
+  name: aws
+  runtime: nodejs12.x
+  apiName: bizzy-api
+  region: ${opt:region, 'eu-west-1'}
+  versionFunctions: false
+  endpointType: REGIONAL
+  apiGateway:
+    restApiId: gacc5r6i15
+    restApiRootResourceId: a3e1htzhzd
+    apiKeySourceType: HEADER
+  apiKeys:
+    - name: API_KEY
+      value: ${self:custom.apiKey.${opt:stage, 'dev'}}

@@ -1,38 +1,24 @@
-service: Home
-
-provider:
-  name: aws
-  runtime: nodejs10.x
-  region: ${opt:region, 'eu-west-1'}
-  versionFunctions: false
-
-package:
-  individually: true
-  include:
-    - ./**
+service: homeLambda
 
 plugins:
   - serverless-offline
   - serverless-dotenv-plugin
 
-custom:
-  serverless-offline: ${file(../../serverless.common.yml):serverless-offline}
-  stage: ${opt:stage, 'dev'}
-  defineApiId:
-    dev: 'xsj24ddyul'
-    prod: ''
+custom: ${file(../../serverless.common.yml):custom}
 
-apiGateway: # Optional API Gateway global config in provider
-  restApiId: ${self:custom.defineApiId.${self:custom.stage}}
+provide: ${file(../../serverless.common.yml):provider}
 
-functions:
-  Home:
-    name: home-${self:custom.stage}
+function:
+  home:
     handler: lambda.handler
-    description: Return all routes availables for this API.
     timeout: 3
     memorySize: 128
     layers:
-      - arn:aws:lambda:eu-west-1:431852575624:layer:LyrResponse:1
-    events: 
-      -  http: GET /
+      - arn:aws:lambda:eu-west-1:431852575624:layer:dependencies:2
+    events:
+      - http:
+          path: /
+          method: get
+          cors:
+            headers: '*'
+          private: true

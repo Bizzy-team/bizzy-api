@@ -1,0 +1,18 @@
+service: bizzyLayers
+
+provider:
+  name: aws
+  region: eu-west-1
+  stage: ${opt:stage, 'dev'}
+
+package:
+  exclude: package-lock.json
+  excludeDevDependencies: true
+
+layers:
+  dependencies:
+    path: ./
+    description: All dependencies and utils files share by the diferents services
+    compatibleRuntimes:
+      - nodejs12.x
+    retain: true

@@ -1,5 +1,4 @@
-const { readdir } = require("fs");
-const response = require("../../layers/response/handler");
+const response = require("/opt/response");
 
 const routes = {
   "/forgot": "send mail for resset password.",
@@ -13,41 +12,12 @@ const routes = {
  * Return all routes availables for the Bizzy API.
  */
 exports.handler = function Home(event, context, cb) {
-  response();
-  console.log("TESTT", "LOLLLL");
   context.callbackWaitsForEmptyEventLoop = false;
 
-  readdir(event.stage === "dev" ? "/" : "/opt", { withFileTypes: true }, function(
-    err,
-    files
-  ) {
-    if (err) return cb(err);
-
-    cb(null, {
-      statusCode: 200,
-      headers: {
-        "x-custom-header": "My Header Value"
-      },
-      body: JSON.stringify({ message: "Hello World!", data: true })
-    });
-  });
-  // if (req.method !== "GET") {
-  //   return responserServer(res, 405, {
-  //     content: "GET"
-  //   });
-  // }
-
-  // const apiUrl =
-  //   process.env.NODE_ENV === "development"
-  //     ? "https://dev-api-bizzy.vercel.app"
-  //     : "api-bizzy.vercel.app";
-  // const objToReturn = {};
-
-  // routes.forEach(i => {
-  //   objToReturn[i.action] = `${apiUrl}/api${i.route}`;
-  // });
-
-  // return responserServer(res, 200, {
-  //   modifyResponse: { ...objToReturn }
-  // });
+  return cb(
+    null,
+    response(200, {
+      modifyResponse: { ...routes }
+    })
+  );
 };
