@@ -1,0 +1,16 @@
+exclude:
+  - ./node_modules/**
+  - .github/**
+  - scripts/**
+  - utils/**
+  - estlintrc.json
+  - .gitignore
+  - .huskyrc.json
+  - .prettierignore
+  - .prettierrc.json
+  - .travis.yml
+  - package-lock.json
+  - package.json
+  - README.md
+  - SECURITY.md
+  - ./layers/**

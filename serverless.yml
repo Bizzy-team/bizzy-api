@@ -30,22 +30,9 @@ provider:
       value: ${self:custom.apiKey.${opt:stage, 'dev'}}
 
 package:
-  exclude:
-    - ./node_modules/**
-    - .github/**
-    - scripts/**
-    - utils/**
-    - estlintrc.json
-    - .gitignore
-    - .huskyrc.json
-    - .prettierignore
-    - .prettierrc.json
-    - .travis.yml
-    - package-lock.json
-    - package.json
-    - README.md
-    - SECURITY.md
+  exclude: ${file(./serverless.common.yml):exclude}
   excludeDevDependencies: true
+  individually: true
 
 functions:
   home:
@@ -58,6 +45,7 @@ functions:
         - lambdas/home.js
         - db/controller/home.js
         - ./.env
+      exclude: ${file(./serverless.common.yml):exclude}
     layers:
       - arn:aws:lambda:eu-west-1:431852575624:layer:bizzyLayers:2
     events:
