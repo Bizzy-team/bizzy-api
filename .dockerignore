@@ -1,0 +1,16 @@
+./node_modules/
+./.git
+./.github/
+./scripts/
+./utils/
+./.huskyrc.json
+./.travis.yml
+./README.md
+./LICENSE
+./.vscode
+./npm-debug.log
+./coverage
+./.env
+./.editorconfig
+./.aws
+./dist
