@@ -3,9 +3,14 @@ service: Bizzy
 plugins:
   - serverless-offline
   - serverless-dotenv-plugin
+  - serverless-domain-manager
+  - serverless-certificate-creator
 
 custom:
-  serverless-offline: 
+  defaultStage: dev
+  currentStage: ${opt:stage, self:custom.defaultStage}
+
+  serverless-offline:
     useDocker: true
     corsAllowHeaders: 'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'
     corsExposedHeaders: 'WWW-Authenticate,Server-Authorization,Access-Control-Allow-Origin,Content-Type'
@@ -15,6 +20,25 @@ custom:
   apiKey:
     dev: ${env:API_KEY_DEV}
     prod: ${env:API_KEY_PROD}
+
+  hostZoneId: Z031944535CSP0ARG1684
+
+  domainName:
+    staging: 'staging-back.bizzy.studio'
+    dev: 'dev-back.bizzy.studio'
+    prod: 'prod-back.bizzy.studio'
+
+  customCertificate:
+    certificateName: ${self:custom.domainName.${self:custom.currentStage}}
+    hostedZoneId: ${self:custom.hostZoneId}
+    region: 'us-east-1'
+
+  customDomain:
+    certificateArn: ${certificate:${self:custom.customCertificate.certificateName}:CertificateArn}
+    domainName: ${self:custom.domainName.${self:custom.currentStage}}
+    basePath: ''
+    stage: ${self:custom.currentStage}
+    createRoute53Record: true
 
 provider:
   name: aws
@@ -33,7 +57,7 @@ package:
   exclude: ${file(./serverless.common.yml):exclude}
   excludeDevDependencies: true
   individually: true
-
+  
 functions:
   home:
     private: true
